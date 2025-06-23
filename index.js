@@ -5,26 +5,24 @@ const ShortUrl = require('./models/ShortUrl');
 const customLogger = require('./middleware/logger');
 const shortUrlRouter = require('./routes/shorturls');
 
-// Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/urlshortener', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
 .then(() => {
-  // No console logging per constraints
+ 
 })
 .catch(err => {
-  // Logging error through logger if required
+ 
 });
 
 const app = express();
 app.use(express.json());
-app.use(customLogger); // Custom Logging Middleware
+app.use(customLogger); 
 
-// Routes
+
 app.use('/shorturls', shortUrlRouter);
 
-// Redirection Logic
 app.get('/:code', async (req, res) => {
   try {
     const code = req.params.code;
@@ -57,5 +55,5 @@ app.get('/:code', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT =3000;
 app.listen(PORT)
